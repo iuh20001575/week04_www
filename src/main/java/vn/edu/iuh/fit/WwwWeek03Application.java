@@ -1,17 +1,15 @@
 package vn.edu.iuh.fit;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 import org.springframework.context.annotation.Bean;
-import vn.edu.iuh.fit.entities.Address;
 import vn.edu.iuh.fit.entities.Candidate;
 import vn.edu.iuh.fit.services.CandidateServices;
-
-import java.time.LocalDate;
-import java.util.List;
-import java.util.UUID;
 
 @SpringBootApplication
 public class WwwWeek03Application {

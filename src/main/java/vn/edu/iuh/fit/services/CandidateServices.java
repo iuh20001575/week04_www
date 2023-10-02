@@ -2,23 +2,23 @@ package vn.edu.iuh.fit.services;
 
 import org.springframework.stereotype.Component;
 import vn.edu.iuh.fit.entities.Candidate;
-import vn.edu.iuh.fit.repositories.CandidateRepository;
+import vn.edu.iuh.fit.dao.CandidateDAO;
 
 import java.util.List;
 
 @Component
 public class CandidateServices {
-    private final CandidateRepository candidateRepository;
+    private final CandidateDAO candidateDAO;
 
-    public CandidateServices(CandidateRepository candidateRepository) {
-        this.candidateRepository = candidateRepository;
+    public CandidateServices(CandidateDAO candidateDAO) {
+        this.candidateDAO = candidateDAO;
     }
 
     public List<Candidate> getAll() {
-        return candidateRepository.getAll();
+        return candidateDAO.getAll();
     }
 
     public boolean create(Candidate candidate) {
-        return candidateRepository.create(candidate);
+        return candidateDAO.create(candidate);
     }
 }

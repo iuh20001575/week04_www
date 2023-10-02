@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public abstract class AbstractDAO<T, ID> {
-    protected DataSource dataSource;
+    private final DataSource dataSource;
     protected JdbcTemplate jdbcTemplate;
 
     public AbstractDAO(DataSource dataSource) {
