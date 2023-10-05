@@ -17,4 +17,8 @@ public class Candidate {
     private String fullName;
     private String phone;
     private Address address;
+
+    public Candidate(UUID id) {
+        this.id = id;
+    }
 }

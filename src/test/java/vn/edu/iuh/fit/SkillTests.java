@@ -24,17 +24,24 @@ class SkillTests {
 
     @Test
     void create() {
-        UUID uuid = UUID.randomUUID();
-        Skill skill = new Skill(uuid, "Description", "Name", SkillType.SOFT);
+        int count = 0;
 
-        boolean b = skillDAO.create(skill);
+        for (int i = 0; i < 10; i++) {
+            UUID uuid = UUID.randomUUID();
+            Skill skill = new Skill(uuid, "Description", "Name", SkillType.SOFT);
 
-        if (!b)
-            Assertions.fail();
+            boolean b = skillDAO.create(skill);
 
-        Optional<Skill> jobOptional = skillDAO.findById(uuid);
+            if (!b)
+                Assertions.fail();
 
-        Assertions.assertTrue(jobOptional.isPresent());
+            Optional<Skill> jobOptional = skillDAO.findById(uuid);
+
+            if (jobOptional.isPresent())
+                count++;
+        }
+
+        Assertions.assertEquals(count, 10);
     }
 
     @Test

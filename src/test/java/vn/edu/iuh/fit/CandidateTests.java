@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
+import vn.edu.iuh.fit.dao.AddressDAO;
 import vn.edu.iuh.fit.dao.CandidateDAO;
 import vn.edu.iuh.fit.entities.Address;
 import vn.edu.iuh.fit.entities.Candidate;
@@ -18,22 +19,28 @@ import java.util.UUID;
 @ContextConfiguration(classes = WwwWeek03Application.class)
 class CandidateTests {
     private final CandidateDAO candidateDAO;
+    private final AddressDAO addressDAO;
 
     @Autowired
-    CandidateTests(CandidateDAO candidateDAO) {
+    CandidateTests(CandidateDAO candidateDAO, AddressDAO addressDAO) {
         this.candidateDAO = candidateDAO;
+        this.addressDAO = addressDAO;
     }
 
-    //	@Test
+    @Test
     void create() {
         Candidate candidate;
         int count = 0;
-        int length = 1;
-        Address address = new Address(UUID.fromString("2536442d-8a32-4acf-9dfc-7a4e25edb329"));
+        int length = 10;
         for (int i = 1; i <= length; ++i) {
             UUID uuid = UUID.randomUUID();
-            candidate = new Candidate(uuid, LocalDate.now(), String.format("email%s@gmail.com", i), "Ho Ten #" + i, "098765431" + i, address);
-            if (candidateDAO.create(candidate))
+            Address address = new Address(UUID.randomUUID(), "Street #" + i, "City #" + i, (short) i, "#" + i, "Code" + i);
+            addressDAO.create(address);
+            candidate = new Candidate(uuid, LocalDate.now(), String.format("emailTest%s@gmail.com", i), "Ho Ten #" + i, "098755431" + i, address);
+            candidateDAO.create(candidate);
+
+            Optional<Candidate> candidateOptional = candidateDAO.findById(uuid);
+            if (candidateOptional.isPresent())
                 count++;
         }
 

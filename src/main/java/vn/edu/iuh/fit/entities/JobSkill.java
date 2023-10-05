@@ -12,5 +12,5 @@ public class JobSkill {
     private String moreInfos;
     private SkillLevel skillLevel;
     private Job job;
-    private Candidate candidate;
+    private Skill skill;
 }

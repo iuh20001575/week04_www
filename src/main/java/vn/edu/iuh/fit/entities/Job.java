@@ -14,4 +14,8 @@ public class Job {
     private String desc;
     private String name;
     private Company company;
+
+    public Job(UUID id) {
+        this.id = id;
+    }
 }
