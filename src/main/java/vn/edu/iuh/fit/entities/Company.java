@@ -17,4 +17,8 @@ public class Company {
     private String phone;
     private String webUrl;
     private Address address;
+
+    public Company(UUID compId) {
+        this.compId = compId;
+    }
 }
